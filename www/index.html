@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Inventory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .icon {
+            font-size: 5em;
+            margin-bottom: 30px;
+        }
+        .button {
+            background: white;
+            color: #2563eb;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .features {
+            margin-top: 40px;
+            text-align: left;
+        }
+        .feature {
+            padding: 10px 0;
+            font-size: 1.1em;
+        }
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+        iframe {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            border: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🤖</div>
+        <h1>AI Inventory</h1>
+        <p style="font-size: 1.2em; margin-bottom: 30px;">Gestione Inventario Intelligente</p>
+        
+        <button class="button" onclick="openApp()">📱 Apri App</button>
+        
+        <div class="features">
+            <div class="feature">✅ Riconoscimento AI dispositivi</div>
+            <div class="feature">📷 Scansione con camera</div>
+            <div class="feature">🔍 OCR intelligente</div>
+            <div class="feature">📊 QR codes</div>
+            <div class="feature">💾 Database offline</div>
+        </div>
+        
+        <div class="loading">
+            <p>Caricamento app...</p>
+        </div>
+    </div>
+    
+    <iframe id="appFrame"></iframe>
+    
+    <script>
+        function openApp() {
+            // URL della tua app Replit
+            const appUrl = 'https://a73dc98f-b2c6-4dc4-a5fb-fa83611718ab-00-1gecnj59zbupg.riker.replit.dev';
+            
+            // Mostra loading
+            document.querySelector('.loading').style.display = 'block';
+            
+            // Apri in iframe per app embedded
+            const iframe = document.getElementById('appFrame');
+            iframe.src = appUrl;
+            iframe.style.display = 'block';
+            
+            // Nasconde container dopo caricamento
+            iframe.onload = function() {
+                document.querySelector('.container').style.display = 'none';
+                document.querySelector('.loading').style.display = 'none';
+            };
+            
+            // Fallback: apri in nuova finestra se iframe non funziona
+            setTimeout(function() {
+                if (iframe.style.display === 'block' && document.querySelector('.loading').style.display === 'block') {
+                    window.open(appUrl, '_blank');
+                    document.querySelector('.loading').innerHTML = '<p>App aperta in nuova finestra</p>';
+                }
+            }, 5000);
+        }
+        
+        // Gestione orientamento
+        window.addEventListener('orientationchange', function() {
+            if (window.orientation !== 0) {
+                alert('Per una migliore esperienza, usa l\'app in modalità verticale');
+            }
+        });
+    </script>
+</body>
+</html>
