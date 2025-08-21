@@ -1,0 +1,15 @@
+{
+  "name": "ai-inventory-app",
+  "version": "1.0.0",
+  "description": "AI Inventory Management App",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Build complete'"
+  },
+  "dependencies": {
+    "cordova": "^12.0.0"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}
